@@ -5,8 +5,8 @@ from race.msg import pid_input
 from ackermann_msgs.msg import AckermannDrive
 
 # PID Control Params
-kp = 0.0 #TODO
-kd = 0.0 #TODO
+kp = 14.0 #TODO
+kd = 0.9 #TODO
 ki = 0.0 #TODO
 servo_offset = 0.0	# zero correction offset in case servo is misaligned and has a bias in turning.
 prev_error = 0.0
@@ -39,6 +39,9 @@ def control(data):
 
 	# 1. Scale the error
 	# 2. Apply the PID equation on error to compute steering
+
+	error_derivative = current_error - prev_error
+
 
 	# An empty AckermannDrive message is created. You will populate the steering_angle and the speed fields.
 	command = AckermannDrive()
