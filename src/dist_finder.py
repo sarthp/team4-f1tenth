@@ -60,5 +60,5 @@ if __name__ == '__main__':
 	print("Hokuyo LIDAR node started")
 	rospy.init_node('dist_finder',anonymous = True)
 	# TODO: Make sure you are subscribing to the correct car_x/scan topic on your racecar
-	rospy.Subscriber("/car_X/scan",LaserScan,callback)
+	rospy.Subscriber("/car_4/scan",LaserScan,callback)
 	rospy.spin()
