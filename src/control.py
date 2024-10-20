@@ -44,10 +44,10 @@ def control(data):
 	command = AckermannDrive()
 
 	# TODO: Make sure the steering value is within bounds [-100,100]
-	command.steering_angle = angle
+	command.steering_angle = min(max(-100, angle), 100)
 
 	# TODO: Make sure the velocity is within bounds [0,100]
-	command.speed = vel_input
+	command.speed = min(max(0, vel_input), 100)
 
 	# Move the car autonomously
 	command_pub.publish(command)
