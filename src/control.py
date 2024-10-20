@@ -40,8 +40,16 @@ def control(data):
 	# 1. Scale the error
 	# 2. Apply the PID equation on error to compute steering
 
-	error_derivative = current_error - prev_error
+	error_derivative = data.pid_error - prev_error
 
+	proportional_term = kp * data.pid_error
+	derivative_term = kd * error_derivative
+	# integral_term = ki * (prev_error + data.pid_error)
+
+	# angle = kp * data.pid_error + kd * error_derivative + ki * (prev_error + data.pid_error)
+	angle = kp * data.pid_error + kd * error_derivative
+    
+	prev_error = current_error
 
 	# An empty AckermannDrive message is created. You will populate the steering_angle and the speed fields.
 	command = AckermannDrive()
