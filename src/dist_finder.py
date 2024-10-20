@@ -36,7 +36,7 @@ def getRange(data,angle):
 def callback(data):
 	global forward_projection
 
-	theta = 50 # you need to try different values for theta
+	theta = 45 # you need to try different values for theta
 	a = getRange(data,theta) # obtain the ray distance for theta
 	b = getRange(data,0)	# obtain the ray distance for 0 degrees (i.e. directly to the right of the car)
 	swing = math.radians(theta)
@@ -44,7 +44,10 @@ def callback(data):
 	## Your code goes here to determine the projected error as per the alrorithm
 	# Compute Alpha, AB, and CD..and finally the error.
 	# TODO: implement
-	
+	alpha = math.atan((a * math.cos(theta) - b) / a * math.sin(theta))
+	AB = b * math.cos(alpha)
+	CD = AB + forward_projection * math.sin(alpha)
+	error = desired_distance - CD
 
 	msg = pid_input()	# An empty msg is created of the type pid_input
 	# this is the error that you want to send to the PID for steering correction.
